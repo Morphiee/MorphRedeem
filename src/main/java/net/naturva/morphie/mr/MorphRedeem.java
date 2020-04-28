@@ -32,7 +32,7 @@ public class MorphRedeem extends JavaPlugin implements Listener {
 	public Messages messagescfg;
 	public Skills skillscfg;
 	public HashMap<Player, String> addCredits = new HashMap<Player, String>();
-	public String Version = "1.2.2";
+	public String Version = "1.3.0";
 	
 	private PlayerFileEvent pe;
 	private RedeemMenuEvent me;

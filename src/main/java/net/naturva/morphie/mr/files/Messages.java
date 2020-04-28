@@ -77,6 +77,7 @@ public class Messages implements Listener {
 	    		list.add("&7Click to assign credits!");
 	    		list.add(" ");
 	    		list.add("&b➙ &7Level Cap&8: &7%LEVELCAP%");
+				list.add("&b➙ &7Level Needed&8: &7%LEVEL%");
 	    		list.add("&b➙ &7Skill Level&8: &7%SKILLLEVEL%");
 	    		
 	    		List<String> list2 = new ArrayList<String>();

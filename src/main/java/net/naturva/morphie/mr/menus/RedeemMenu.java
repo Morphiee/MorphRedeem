@@ -36,11 +36,13 @@ public class RedeemMenu implements Listener {
 	    	if (new McMMOMethods().getSkillCap("Acrobatics") != 2147483647) {
 		    	Acrobatics.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Acrobatics"))
-		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Acrobatics")));
+		    			.replace("%LEVELCAP%", "" + new McMMOMethods().getSkillCap("Acrobatics"))
+		    			.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Acrobatics.LevelTillUse")));
 	    	} else {
 		    	Acrobatics.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Acrobatics"))
-		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap"))));
+		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap")))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Acrobatics.LevelTillUse")));
 	    	}
 		}
 	    
@@ -55,11 +57,13 @@ public class RedeemMenu implements Listener {
 	    	if (new McMMOMethods().getSkillCap("Alchemy") != 2147483647) {
 	    		Alchemy.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Alchemy"))
-		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Alchemy")));
+		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Alchemy"))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Alchemy.LevelTillUse")));
 	    	} else {
 	    		Alchemy.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Alchemy"))
-		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap"))));
+		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap")))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Alchemy.LevelTillUse")));
 	    	}
 		}
 	
@@ -74,11 +78,13 @@ public class RedeemMenu implements Listener {
 	    	if (new McMMOMethods().getSkillCap("Archery") != 2147483647) {
 	    		Archery.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Archery"))
-		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Archery")));
+		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Archery"))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Archery.LevelTillUse")));
 	    	} else {
 	    		Archery.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Archery"))
-		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap"))));
+		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap")))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Archery.LevelTillUse")));
 	    	}
 		}
 	    
@@ -93,11 +99,13 @@ public class RedeemMenu implements Listener {
 	    	if (new McMMOMethods().getSkillCap("Axes") != 2147483647) {
 	    		Axes.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Axes"))
-		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Axes")));
+		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Axes"))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Axes.LevelTillUse")));
 	    	} else {
 	    		Axes.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Axes"))
-		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap"))));
+		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap")))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Axes.LevelTillUse")));
 	    	}
 		}
 	
@@ -112,11 +120,13 @@ public class RedeemMenu implements Listener {
 	    	if (new McMMOMethods().getSkillCap("Excavation") != 2147483647) {
 	    		Excavation.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Excavation"))
-		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Excavation")));
+		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Excavation"))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Excavation.LevelTillUse")));
 	    	} else {
 	    		Excavation.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Excavation"))
-		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap"))));
+		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap")))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Excavation.LevelTillUse")));
 	    	}
 		}
 	
@@ -131,11 +141,13 @@ public class RedeemMenu implements Listener {
 	    	if (new McMMOMethods().getSkillCap("Fishing") != 2147483647) {
 	    		Fishing.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Fishing"))
-		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Fishing")));
+		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Fishing"))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Fishing.LevelTillUse")));
 	    	} else {
 	    		Fishing.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Fishing"))
-		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap"))));
+		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap")))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Fishing.LevelTillUse")));
 	    	}
 		}
 	
@@ -150,11 +162,13 @@ public class RedeemMenu implements Listener {
 	    	if (new McMMOMethods().getSkillCap("Herbalism") != 2147483647) {
 	    		Herbalism.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Herbalism"))
-		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Herbalism")));
+		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Herbalism"))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Herbalism.LevelTillUse")));
 	    	} else {
 	    		Herbalism.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Herbalism"))
-		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap"))));
+		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap")))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Herbalism.LevelTillUse")));
 	    	}
 		}
 	
@@ -169,11 +183,13 @@ public class RedeemMenu implements Listener {
 	    	if (new McMMOMethods().getSkillCap("Mining") != 2147483647) {
 	    		Mining.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Mining"))
-		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Mining")));
+		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Mining"))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Mining.LevelTillUse")));
 	    	} else {
 	    		Mining.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Mining"))
-		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap"))));
+		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap")))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Mining.LevelTillUse")));
 	    	}
 		}
 	
@@ -188,11 +204,13 @@ public class RedeemMenu implements Listener {
 	    	if (new McMMOMethods().getSkillCap("Repair") != 2147483647) {
 	    		Repair.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Repair"))
-		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Repair")));
+		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Repair"))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Repair.LevelTillUse")));
 	    	} else {
 	    		Repair.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Repair"))
-		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap"))));
+		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap")))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Repair.LevelTillUse")));
 	    	}
 		}
 	
@@ -207,11 +225,13 @@ public class RedeemMenu implements Listener {
 	    	if (new McMMOMethods().getSkillCap("Swords") != 2147483647) {
 	    		Swords.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Swords"))
-		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Swords")));
+		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Swords"))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Swords.LevelTillUse")));
 	    	} else {
 	    		Swords.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Swords"))
-		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap"))));
+		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap")))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Swords.LevelTillUse")));
 	    	}
 		}
 	
@@ -226,11 +246,13 @@ public class RedeemMenu implements Listener {
 	    	if (new McMMOMethods().getSkillCap("Taming") != 2147483647) {
 	    		Taming.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Taming"))
-		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Taming")));
+		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Taming"))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Taming.LevelTillUse")));
 	    	} else {
 	    		Taming.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Taming"))
-		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap"))));
+		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap")))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Taming.LevelTillUse")));
 	    	}
 		}
 	
@@ -245,11 +267,13 @@ public class RedeemMenu implements Listener {
 	    	if (new McMMOMethods().getSkillCap("Unarmed") != 2147483647) {
 	    		Unarmed.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Unarmed"))
-		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Unarmed")));
+		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Unarmed"))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Unarmed.LevelTillUse")));
 	    	} else {
 	    		Unarmed.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Unarmed"))
-		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap"))));
+		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap")))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Unarmed.LevelTillUse")));
 	    	}
 		}
 	
@@ -264,11 +288,13 @@ public class RedeemMenu implements Listener {
 	    	if (new McMMOMethods().getSkillCap("Woodcutting") != 2147483647) {
 	    		Woodcutting.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Woodcutting"))
-		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Woodcutting")));
+		    			.replace("%LEVELCAP%", "" + + new McMMOMethods().getSkillCap("Woodcutting"))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Woodcutting.LevelTillUse")));
 	    	} else {
 	    		Woodcutting.add(ChatColor.translateAlternateColorCodes('&', s)
 		    			.replace("%SKILLLEVEL%", "" + new McMMOMethods().getSkillLevel(player, "Woodcutting"))
-		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap"))));
+		    			.replace("%LEVELCAP%", "" + ChatColor.translateAlternateColorCodes('&', plugin.getMessage("NoSkillCap")))
+						.replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills.Woodcutting.LevelTillUse")));
 	    	}
 		}
 	
