@@ -8,7 +8,7 @@
 #
 #============================================================================================================================|
 #
-# Plugin Version: 1.2.2
+# Plugin Version: 1.3.0
 # Spigot Link: https://www.spigotmc.org/resources/morphredeem-mcmmo-credits-1-14.67435/
 # Discord Link: https://discord.gg/6bnU9xn
 # Author's Discord: Morphie#6969
@@ -21,46 +21,15 @@
 Settings:
   # The color of glass in the main /morphreedem menu.
   BackgroundGlassColor: 11
-  DisabledSkills:
+  # Item to replace disabled Skills with.
+  ReplaceGUIItem:
     Enabled: false
-    # Item to replace disabled Skills with.
-    ReplaceGUIItem:
-      Enabled: false
-      ItemName: STRUCTURE_VOID
-    # Skills that players won't be able to apply credits to.
-    SkillsToDisable:
-    - Acrobatics
+    ItemName: STRUCTURE_VOID
   # Enable or disable the plugin credits item in the /morphredeem menu.
   PluginCredits:
     Enabled: true
   # Change the Item types in the main /morphredeem menu.
   GUI:
-    Acrobatics:
-      ItemName: LEATHER_BOOTS
-    Alchemy:
-      ItemName: POTION
-    Archery:
-      ItemName: BOW
-    Axes:
-      ItemName: DIAMOND_AXE
-    Excavation:
-      ItemName: DIAMOND_SHOVEL
-    Fishing:
-      ItemName: FISHING_ROD 
-    Herbalism:
-      ItemName: FARMLAND
-    Mining:
-      ItemName: DIAMOND_PICKAXE
-    Repair:
-      ItemName: ANVIL
-    Swords:
-      ItemName: DIAMOND_SWORD
-    Taming:
-      ItemName: BONE
-    Unarmed:
-      ItemName: STICK
-    Woodcutting:
-      ItemName: OAK_WOOD
     mcMMOCredits:
       ItemName: NETHER_STAR
     CreditsSpent:
@@ -83,4 +52,56 @@ MySQL:
   Database: "minecraft"
   TablePrefix: "mr_"
   
+#============================================================================================================================|
+
+# Skill Prestige System! Allow your players to prestige their mcMMO skill levels when they reach the level cap.
+# (This does require you to have a level cap set in mcMMO.) This also allows you to set up a sort of Prestige 'Tree'.
+# Meaning the players can prestige a skill X amount of times with the option to make the rewards better every few prestiges.
+
+# Below I will explain how each option works for the prestige system.
+# LevelCap: - DEFAULT (Level cap set in mcMMO), or you can set it to a level below the configured mcMMO cap.
+# LevelReset: - Level that the skill will be reset too.
+# PrestigeCap: - How many times can a user prestige a skill.
+Prestige:
+  LevelCap: DEFAULT
+  Acrobatics:
+    LevelReset: 0
+    PrestigeCap: 10
+  Alchemy:
+    LevelReset: 0
+    PrestigeCap: 10
+  Archery:
+    LevelReset: 0
+    PrestigeCap: 10
+  Axes:
+    LevelReset: 0
+    PrestigeCap: 10
+  Excavation:
+    LevelReset: 0
+    PrestigeCap: 10
+  Fishing:
+    LevelReset: 0
+    PrestigeCap: 10
+  Herbalism:
+    LevelReset: 0
+    PrestigeCap: 10
+  Mining:
+    LevelReset: 0
+    PrestigeCap: 10
+  Repair:
+    LevelReset: 0
+    PrestigeCap: 10
+  Swords:
+    LevelReset: 0
+    PrestigeCap: 10
+  Taming:
+    LevelReset: 0
+    PrestigeCap: 10
+  Unarmed:
+    LevelReset: 0
+    PrestigeCap: 10
+  Woodcutting:
+    LevelReset: 0
+    PrestigeCap: 10
+
 #============================================================================================================================|

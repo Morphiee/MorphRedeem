@@ -3,6 +3,7 @@ package net.naturva.morphie.mr.events.menus;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import net.naturva.morphie.mr.files.Skills;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,6 +19,7 @@ import net.naturva.morphie.mr.util.dataManager;
 public class RedeemMenuEvent implements Listener {
 
 	private MorphRedeem plugin;
+	public Skills skills;
 	
 	public RedeemMenuEvent(MorphRedeem plugin) {
 		this.plugin = plugin;
@@ -27,7 +29,7 @@ public class RedeemMenuEvent implements Listener {
 	public void onInventoryClick(InventoryClickEvent event) {
 		if (event.getView().getTitle().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Menu.Title")))) {
 			Player player = (Player)event.getWhoClicked();
-			UUID uuid = player.getUniqueId(); 
+			UUID uuid = player.getUniqueId();
 			if ((event.getCurrentItem() == null) || (!event.getCurrentItem().hasItemMeta())) {
 				return;
 			}
@@ -37,7 +39,7 @@ public class RedeemMenuEvent implements Listener {
 		    ItemMeta itemmeta = item.getItemMeta();
 		    ArrayList<String> itemlore = (ArrayList<String>) itemmeta.getLore();
 		    String DisplayName = itemmeta.getDisplayName();
-		    Boolean skillDisable = this.plugin.getConfig().getBoolean("Settings.DisabledSkills.Enabled");
+		    boolean skillDisable = this.plugin.skillscfg.getSkillDisableBoolean("SkillsToDisable.Enabled");
 		      
 		    boolean normalItem = false;
 		    if (DisplayName.equals(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Menu.mcMMOCredits.Name")))) {
@@ -56,7 +58,7 @@ public class RedeemMenuEvent implements Listener {
 		    } if (!normalItem) {
 		    	if (DisplayName.equals(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Menu.Acrobatics.Name")))) {
 		    		event.setCancelled(true);
-		    		if (skillDisable == true && this.plugin.getConfig().getStringList("Settings.DisabledSkills.SkillsToDisable").contains("Acrobatics")) {
+		    		if (skillDisable == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Acrobatics")) {
 		    			event.setCancelled(true);
 		    			player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("SkillDisabledMessage")));
 		    		} else {
@@ -72,7 +74,7 @@ public class RedeemMenuEvent implements Listener {
 		    		}
 		    	} else if (DisplayName.equals(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Menu.Alchemy.Name")))) {
 		    		event.setCancelled(true);
-		    		if (skillDisable == true && this.plugin.getConfig().getStringList("Settings.DisabledSkills.SkillsToDisable").contains("Alchemy")) {
+		    		if (skillDisable == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Alchemy")) {
 		    			event.setCancelled(true);
 		    			player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("SkillDisabledMessage")));
 		    		} else {
@@ -88,7 +90,7 @@ public class RedeemMenuEvent implements Listener {
 		    		}
 		    	} else if (DisplayName.equals(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Menu.Archery.Name")))) {
 		    		event.setCancelled(true);
-		    		if (skillDisable == true && this.plugin.getConfig().getStringList("Settings.DisabledSkills.SkillsToDisable").contains("Archery")) {
+		    		if (skillDisable == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Archery")) {
 		    			event.setCancelled(true);
 		    			player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("SkillDisabledMessage")));
 		    		} else {
@@ -104,7 +106,7 @@ public class RedeemMenuEvent implements Listener {
 		    		}
 		    	} else if (DisplayName.equals(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Menu.Axes.Name")))) {
 		    		event.setCancelled(true);
-		    		if (skillDisable == true && this.plugin.getConfig().getStringList("Settings.DisabledSkills.SkillsToDisable").contains("Axes")) {
+		    		if (skillDisable == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Axes")) {
 		    			event.setCancelled(true);
 		    			player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("SkillDisabledMessage")));
 		    		} else {
@@ -120,7 +122,7 @@ public class RedeemMenuEvent implements Listener {
 		    		}
 		    	} else if (DisplayName.equals(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Menu.Excavation.Name")))) {
 		    		event.setCancelled(true);
-		    		if (skillDisable == true && this.plugin.getConfig().getStringList("Settings.DisabledSkills.SkillsToDisable").contains("Excavation")) {
+		    		if (skillDisable == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Excavation")) {
 		    			event.setCancelled(true);
 		    			player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("SkillDisabledMessage")));
 		    		} else {
@@ -136,7 +138,7 @@ public class RedeemMenuEvent implements Listener {
 		    		}
 		    	} else if (DisplayName.equals(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Menu.Fishing.Name")))) {
 		    		event.setCancelled(true);
-		    		if (skillDisable == true && this.plugin.getConfig().getStringList("Settings.DisabledSkills.SkillsToDisable").contains("Fishing")) {
+		    		if (skillDisable == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Fishing")) {
 		    			event.setCancelled(true);
 		    			player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("SkillDisabledMessage")));
 		    		} else {
@@ -152,7 +154,7 @@ public class RedeemMenuEvent implements Listener {
 		    		}
 		    	} else if (DisplayName.equals(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Menu.Herbalism.Name")))) {
 		    		event.setCancelled(true);
-		    		if (skillDisable == true && this.plugin.getConfig().getStringList("Settings.DisabledSkills.SkillsToDisable").contains("Herbalism")) {
+		    		if (skillDisable == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Herbalism")) {
 		    			event.setCancelled(true);
 		    			player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("SkillDisabledMessage")));
 		    		} else {
@@ -168,7 +170,7 @@ public class RedeemMenuEvent implements Listener {
 		    		}
 		    	} else if (DisplayName.equals(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Menu.Mining.Name")))) {
 		    		event.setCancelled(true);
-		    		if (skillDisable == true && this.plugin.getConfig().getStringList("Settings.DisabledSkills.SkillsToDisable").contains("Mining")) {
+		    		if (skillDisable == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Mining")) {
 		    			event.setCancelled(true);
 		    			player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("SkillDisabledMessage")));
 		    		} else {
@@ -184,7 +186,7 @@ public class RedeemMenuEvent implements Listener {
 		    		}
 		    	} else if (DisplayName.equals(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Menu.Repair.Name")))) {
 		    		event.setCancelled(true);
-		    		if (skillDisable == true && this.plugin.getConfig().getStringList("Settings.DisabledSkills.SkillsToDisable").contains("Repair")) {
+		    		if (skillDisable == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Repair")) {
 		    			event.setCancelled(true);
 		    			player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("SkillDisabledMessage")));
 		    		} else {
@@ -200,7 +202,7 @@ public class RedeemMenuEvent implements Listener {
 		    		}
 		    	} else if (DisplayName.equals(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Menu.Swords.Name")))) {
 		    		event.setCancelled(true);
-		    		if (skillDisable == true && this.plugin.getConfig().getStringList("Settings.DisabledSkills.SkillsToDisable").contains("Swords")) {
+		    		if (skillDisable == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Swords")) {
 		    			event.setCancelled(true);
 		    			player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("SkillDisabledMessage")));
 		    		} else {
@@ -216,7 +218,7 @@ public class RedeemMenuEvent implements Listener {
 		    		}
 		    	} else if (DisplayName.equals(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Menu.Taming.Name")))) {
 		    		event.setCancelled(true);
-		    		if (skillDisable == true && this.plugin.getConfig().getStringList("Settings.DisabledSkills.SkillsToDisable").contains("Taming")) {
+		    		if (skillDisable == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Taming")) {
 		    			event.setCancelled(true);
 		    			player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("SkillDisabledMessage")));
 		    		} else {
@@ -232,7 +234,7 @@ public class RedeemMenuEvent implements Listener {
 		    		}
 		    	} else if (DisplayName.equals(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Menu.Unarmed.Name")))) {
 		    		event.setCancelled(true);
-		    		if (skillDisable == true && this.plugin.getConfig().getStringList("Settings.DisabledSkills.SkillsToDisable").contains("Unarmed")) {
+		    		if (skillDisable == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Unarmed")) {
 		    			event.setCancelled(true);
 		    			player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("SkillDisabledMessage")));
 		    		} else {
@@ -248,7 +250,7 @@ public class RedeemMenuEvent implements Listener {
 		    		}
 		    	} else if (DisplayName.equals(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Menu.Woodcutting.Name")))) {
 		    		event.setCancelled(true);
-		    		if (skillDisable == true && this.plugin.getConfig().getStringList("Settings.DisabledSkills.SkillsToDisable").contains("Woodcutting")) {
+		    		if (skillDisable == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Woodcutting")) {
 		    			event.setCancelled(true);
 		    			player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("SkillDisabledMessage")));
 		    		} else {

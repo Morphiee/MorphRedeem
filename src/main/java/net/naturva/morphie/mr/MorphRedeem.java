@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
 
+import net.naturva.morphie.mr.files.Skills;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -29,6 +30,7 @@ public class MorphRedeem extends JavaPlugin implements Listener {
 	
 	public static Logger log = Logger.getLogger("Minecraft");
 	public Messages messagescfg;
+	public Skills skillscfg;
 	public HashMap<Player, String> addCredits = new HashMap<Player, String>();
 	public String Version = "1.2.2";
 	
@@ -99,6 +101,8 @@ public class MorphRedeem extends JavaPlugin implements Listener {
     public void loadConfigManager() {
         this.messagescfg = new Messages();
         this.messagescfg.setup();
+        this.skillscfg = new Skills();
+        this.skillscfg.setup();
       }
   	
     public ItemStack createInventoryItem(String paramString1, int paramInt, String paramString2, ArrayList<String> paramArrayList, boolean paramBoolean) {
