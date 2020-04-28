@@ -70,6 +70,7 @@ public class Messages implements Listener {
 	    		this.messagesCFG.addDefault("InvalidNumberNegative", "&7The number you entered was not positive! Canceling credit assignment.");
 	    		this.messagesCFG.addDefault("InvalidPlayer", "&7Cannot find that player!");
 	    		this.messagesCFG.addDefault("InvalidSkill", "&7The argument entered was not recognized as a skill!");
+				this.messagesCFG.addDefault("LevelTillUse", "&7You cannot apply credits to this skill until it reaches level &b%LEVEL% &7or higher!");
 	   
 	    		List<String> list = new ArrayList<String>();
 	    		list.add(" ");
