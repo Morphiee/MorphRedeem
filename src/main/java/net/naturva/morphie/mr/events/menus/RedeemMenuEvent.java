@@ -19,7 +19,6 @@ import net.naturva.morphie.mr.util.dataManager;
 public class RedeemMenuEvent implements Listener {
 
 	private MorphRedeem plugin;
-	public Skills skills;
 	
 	public RedeemMenuEvent(MorphRedeem plugin) {
 		this.plugin = plugin;

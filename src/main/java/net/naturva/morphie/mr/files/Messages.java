@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -16,8 +17,8 @@ import net.naturva.morphie.mr.MorphRedeem;
 
 public class Messages implements Listener {
 	private MorphRedeem plugin = (MorphRedeem)MorphRedeem.getPlugin(MorphRedeem.class);
-	public FileConfiguration messagesCFG;
-	public File messagesFile;
+	private FileConfiguration messagesCFG;
+	private File messagesFile;
 	  
 	public void setup() {
 		if (!this.plugin.getDataFolder().exists()) {
@@ -87,7 +88,7 @@ public class Messages implements Listener {
 	    		list3.add("&b➙ &7%CREDITSSPENT%");
 	    		
 	    		List<String> list4 = new ArrayList<String>();
-	    		list4.add("&9&lVersion&8: &7" + this.plugin.Version);
+	    		list4.add("&9&lVersion&8: &7%VERSION%");
 	    		list4.add(" ");
 	    		list4.add("&bCode Contributors&8:");
 	    		list4.add("&8- &7Morphie");
@@ -154,9 +155,10 @@ public class Messages implements Listener {
     		Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "Could not save the messages.yml file");
     	}
     }
-	  
-    public void reloadMessages() {
-    	this.messagesCFG = YamlConfiguration.loadConfiguration(this.messagesFile);
-    }
-    
+
+    @Getter
+	public FileConfiguration getMessagesCgf() {
+		return messagesCFG;
+	}
+
 }

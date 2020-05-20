@@ -14,8 +14,8 @@ import java.util.List;
 
 public class Skills implements Listener {
     private MorphRedeem plugin = (MorphRedeem)MorphRedeem.getPlugin(MorphRedeem.class);
-    public FileConfiguration skillsCFG;
-    public File skillsFile;
+    private FileConfiguration skillsCFG;
+    private File skillsFile;
 
     public void setup() {
         if (!this.plugin.getDataFolder().exists()) {
@@ -75,10 +75,6 @@ public class Skills implements Listener {
         } catch (IOException e) {
             Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "Could not save the skills.yml file");
         }
-    }
-
-    public void reloadskills() {
-        this.skillsCFG = YamlConfiguration.loadConfiguration(this.skillsFile);
     }
 
     public String getSkillItemName(String string) {

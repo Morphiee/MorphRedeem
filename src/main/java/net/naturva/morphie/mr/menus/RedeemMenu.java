@@ -18,7 +18,7 @@ import java.util.UUID;
 public class RedeemMenu implements Listener {
 	
 	private MorphRedeem plugin;
-	public Skills skills;
+	private Skills skills;
 	  
 	public RedeemMenu(MorphRedeem plugin) {
 		this.plugin = plugin;
@@ -322,7 +322,7 @@ public class RedeemMenu implements Listener {
 
 		ArrayList<String> PluginCredits = new ArrayList();
 	    for (String s : plugin.getMessageList("Menu.PluginCredits.Lore")) {
-	    	PluginCredits.add(ChatColor.translateAlternateColorCodes('&', s));
+	    	PluginCredits.add(ChatColor.translateAlternateColorCodes('&', s).replace("%VERSION%", this.plugin.getVersion()));
 		}
 	    
 	    int glassInt = this.plugin.getConfig().getInt("Settings.BackgroundGlassColor");

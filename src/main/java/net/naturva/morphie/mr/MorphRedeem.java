@@ -6,9 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
 import net.naturva.morphie.mr.files.Skills;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -32,7 +34,7 @@ public class MorphRedeem extends JavaPlugin implements Listener {
 	public Messages messagescfg;
 	public Skills skillscfg;
 	public HashMap<Player, String> addCredits = new HashMap<Player, String>();
-	public String Version = "1.3.0";
+	private String version = "1.3.0";
 	
 	private PlayerFileEvent pe;
 	private RedeemMenuEvent me;
@@ -52,7 +54,7 @@ public class MorphRedeem extends JavaPlugin implements Listener {
         new MetricsLite(this);
 	    
 	    getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[----------[&3MorphRedeem&8]----------]"));
-	    getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bVersion&8: &a" + this.Version));
+	    getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bVersion&8: &a" + this.version));
 		createConfig();
 		loadConfigManager();
 		if (this.getConfig().getString("StorageMethod").equals("MySQL")) {
@@ -74,7 +76,7 @@ public class MorphRedeem extends JavaPlugin implements Listener {
 	
 	public void onDisable(){
 		getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[----------[&3MorphRedeem&8]----------]"));
-		getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bVersion&8: &a" + this.Version));
+		getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bVersion&8: &a" + this.version));
 	    getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bPlugin Status&8: &cDisabled"));
 	    getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[----------[&3MorphRedeem&8]----------]"));
 	}
@@ -135,10 +137,15 @@ public class MorphRedeem extends JavaPlugin implements Listener {
     }
 
 	public String getMessage(String string) {
-		return this.messagescfg.messagesCFG.getString(string);
+		return this.messagescfg.getMessagesCgf().getString(string);
 	}
 	
 	public List<String> getMessageList(String string) {
-		return this.messagescfg.messagesCFG.getStringList(string);
+		return this.messagescfg.getMessagesCgf().getStringList(string);
+	}
+
+	@Getter
+	public String getVersion() {
+		return version;
 	}
 }
