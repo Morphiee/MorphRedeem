@@ -432,7 +432,7 @@ public class Commands implements CommandExecutor {
 					return true;
 		        }
 			} else if (args.length == 2) {
-				if (sender.hasPermission("morphredeem.skillcommand")) {
+				if (sender.hasPermission("morphredeem.skill")) {
 					Player player = (Player)sender;
 					UUID uuid = player.getUniqueId();
 					String skill = args[0];
