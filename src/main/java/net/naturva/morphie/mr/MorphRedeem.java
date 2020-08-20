@@ -4,13 +4,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import jdk.nashorn.internal.objects.annotations.Getter;
+import net.naturva.morphie.mr.Commands.CommandHandler;
 import net.naturva.morphie.mr.files.Skills;
+import net.naturva.morphie.mr.util.MessageUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -41,6 +43,7 @@ public class MorphRedeem extends JavaPlugin implements Listener {
 	private RedeemChatEvent ce;
 	
 	public void onEnable() {
+		Objects.requireNonNull(getCommand("mr")).setExecutor(new CommandHandler(this));
 		this.pe = new PlayerFileEvent(this);
 		this.me = new RedeemMenuEvent(this);
 		this.ce = new RedeemChatEvent(this);
@@ -49,36 +52,51 @@ public class MorphRedeem extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(this.me, this);
 		getServer().getPluginManager().registerEvents(this.ce, this);
 		
-		getCommand("mr").setExecutor(new Commands(this));
-		
         new MetricsLite(this);
-	    
-	    getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[----------[&3MorphRedeem&8]----------]"));
-	    getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bVersion&8: &a" + this.version));
+
+		getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&8_______________________________________________________"));
+        getServer().getConsoleSender().sendMessage(MessageUtils.addColor(" &9__  __ &b___ "));
+		getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9|  \\/  &b| _ \\     &9Version&8: &b" + this.version));
+		getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9| |\\/| &b|   /      &9Status&8: &aEnabled"));
+		getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9|_|  |_&b|_|_\\"));
+		getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&8_______________________________________________________"));
+		getServer().getConsoleSender().sendMessage(" ");
+
 		createConfig();
 		loadConfigManager();
+
+		getServer().getConsoleSender().sendMessage(" ");
+		getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9Command Handler&8: &aEnabled"));
+
 		if (this.getConfig().getString("StorageMethod").equals("MySQL")) {
 			new MySQLConnection(this).mysqlSetup();
 			new MySQLConnection(this).checkStructure();
-			getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bStorage Type&8: &aMySQL"));
+			getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9Storage Type&8: &bMySQL"));
 		} else {
-			getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bStorage Type&8: &aYML"));
+			getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9Storage Type&8: &bYML"));
 		}
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null){
         	new MorphRedeemExpansion(this).register();
-        	getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bPlaceholderAPI&8: &aHooked"));
+        	getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9PlaceholderAPI&8: &bHooked"));
         } else {
-        	getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bPlaceholderAPI&8: &cNot found"));
+        	getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9PlaceholderAPI&8: &cNot found"));
         }
-	    getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bPlugin Status&8: &aEnabled"));
-	    getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[----------[&3MorphRedeem&8]----------]"));
+		if(Bukkit.getPluginManager().getPlugin("mcMMO") != null){
+			new MorphRedeemExpansion(this).register();
+			getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9mcMMO&8: &bHooked"));
+		} else {
+			getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9mcMMO&8: &cNot found"));
+		}
+		getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&8_______________________________________________________"));
 	}
 	
 	public void onDisable(){
-		getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[----------[&3MorphRedeem&8]----------]"));
-		getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bVersion&8: &a" + this.version));
-	    getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bPlugin Status&8: &cDisabled"));
-	    getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[----------[&3MorphRedeem&8]----------]"));
+		getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&8_______________________________________________________"));
+		getServer().getConsoleSender().sendMessage(MessageUtils.addColor(" &9__  __ &b___ "));
+		getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9|  \\/  &b| _ \\     &9Version&8: &b" + this.version));
+		getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9| |\\/| &b|   /      &9Status&8: &cDisabled"));
+		getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9|_|  |_&b|_|_\\"));
+		getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&8_______________________________________________________"));
 	}
 	
 	private void createConfig() {
@@ -88,11 +106,11 @@ public class MorphRedeem extends JavaPlugin implements Listener {
 			}
 			File file = new File(getDataFolder(), "config.yml");
 			if (!file.exists()) {
-				getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bConfig&8: &aGenerating config."));
+				getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9Config&8: &aGenerating config."));
 				getConfig().options().copyDefaults(true);
 				saveDefaultConfig();
 			} else {
-				getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bConfig&8: &aLoading config."));
+				getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9Config&8: &bLoading config.yml"));
 			}
 	    }
 	    catch (Exception e) {
@@ -103,8 +121,10 @@ public class MorphRedeem extends JavaPlugin implements Listener {
     public void loadConfigManager() {
         this.messagescfg = new Messages();
         this.messagescfg.setup();
+		getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9Config&8: &bLoading messages.yml"));
         this.skillscfg = new Skills();
         this.skillscfg.setup();
+		getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9Config&8: &bLoading skills.yml"));
       }
   	
     public ItemStack createInventoryItem(String paramString1, int paramInt, String paramString2, ArrayList<String> paramArrayList, boolean paramBoolean) {
