@@ -3,9 +3,10 @@ package net.naturva.morphie.mr.Commands.AdminCommands;
 import net.md_5.bungee.api.ChatColor;
 import net.naturva.morphie.mr.MorphRedeem;
 import net.naturva.morphie.mr.util.Utils;
-import net.naturva.morphie.mr.util.dataManager;
+import net.naturva.morphie.mr.util.DataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
@@ -17,20 +18,20 @@ public class AddCommand {
         this.plugin = plugin;
     }
     
-    public void addCredits(Player player, String[] args) {
-        if (player.hasPermission("morphredeem.admin") || player.hasPermission("morphredeem.addcredits")) {
+    public void addCredits(CommandSender sender, String[] args) {
+        if (sender.hasPermission("morphredeem.admin") || sender.hasPermission("morphredeem.addcredits")) {
             if (args.length != 3) {
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Add")));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Add")));
             }
             try {
                 Integer.parseInt(args[2]);
             }
             catch (NumberFormatException e) {
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Add")));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Add")));
             }
             int amount = Integer.parseInt(args[2]);
             if (amount <= 0) {
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Add")));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Add")));
             }
             Player target = null;
             OfflinePlayer offTarget = null;
@@ -42,31 +43,31 @@ public class AddCommand {
                 targetUUID = UUID.fromString(args[1]);
                 target = Bukkit.getPlayer(targetUUID);
                 if (new Utils(plugin).getFileExists(targetUUID)) {
-                    new dataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddSuccessMessage")));
+                    new DataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddSuccessMessage")));
                     target.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddMessage").replace("%CREDITS%", "" + amount)));
                 } else {
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
                 }
             } else if (!new Utils(plugin).checkIfUUID(args[1]) && Bukkit.getPlayer(args[1]) == null) {
                 offTarget = Bukkit.getServer().getOfflinePlayer(args[1]);
                 targetUUID = offTarget.getUniqueId();
                 if (new Utils(plugin).getFileExists(targetUUID)) {
-                    new dataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddSuccessMessage")));
+                    new DataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddSuccessMessage")));
                 } else {
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
                 }
             }
-            new dataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
-            if (player == target) {
+            new DataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
+            if (sender == target) {
                 target.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddMessage").replace("%CREDITS%", "" + amount)));
             } else {
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddSuccessMessage")));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddSuccessMessage")));
                 target.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddMessage").replace("%CREDITS%", "" + amount)));
             }
         } else {
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("NoPermsMessage")));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("NoPermsMessage")));
         }
     }
 }

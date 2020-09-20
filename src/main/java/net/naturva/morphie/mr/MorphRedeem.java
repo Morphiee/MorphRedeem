@@ -1,34 +1,26 @@
 package net.naturva.morphie.mr;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
-import java.util.logging.Logger;
-
 import jdk.nashorn.internal.objects.annotations.Getter;
 import net.naturva.morphie.mr.Commands.CommandHandler;
-import net.naturva.morphie.mr.files.Skills;
-import net.naturva.morphie.mr.util.MessageUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import net.md_5.bungee.api.ChatColor;
 import net.naturva.morphie.mr.events.PlayerFileEvent;
 import net.naturva.morphie.mr.events.chat.RedeemChatEvent;
 import net.naturva.morphie.mr.events.menus.RedeemMenuEvent;
 import net.naturva.morphie.mr.files.Messages;
+import net.naturva.morphie.mr.files.Skills;
+import net.naturva.morphie.mr.util.Database.MySQLConnection;
+import net.naturva.morphie.mr.util.MessageUtils;
 import net.naturva.morphie.mr.util.MetricsLite;
 import net.naturva.morphie.mr.util.MorphRedeemExpansion;
-import net.naturva.morphie.mr.util.Database.MySQLConnection;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+import java.util.logging.Logger;
 
 public class MorphRedeem extends JavaPlugin implements Listener {
 	
@@ -126,35 +118,6 @@ public class MorphRedeem extends JavaPlugin implements Listener {
         this.skillscfg.setup();
 		getServer().getConsoleSender().sendMessage(MessageUtils.addColor("&9Config&8: &bLoading skills.yml"));
       }
-  	
-    public ItemStack createInventoryItem(String paramString1, int paramInt, String paramString2, ArrayList<String> paramArrayList, boolean paramBoolean) {
-    	ItemStack localItemStack = new ItemStack(Material.matchMaterial(paramString1), paramInt);
-    	ItemMeta localItemMeta = localItemStack.getItemMeta();
-    	localItemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ATTRIBUTES });
-    	localItemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_POTION_EFFECTS });
-    	localItemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_DESTROYS });
-    	if (paramBoolean) {
-    		localItemMeta.addEnchant(Enchantment.DURABILITY, 1, true);
-    		localItemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
-    	}
-    	localItemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', paramString2));
-    	localItemMeta.setLore(paramArrayList);
-    	localItemStack.setItemMeta(localItemMeta);
-    	return localItemStack;
-    }
-    
-    public ItemStack createInventoryGlassItem(String paramString1, int glassInt, int paramInt, String paramString2, ArrayList<String> paramArrayList, boolean paramBoolean) {
-    	ItemStack localItemStack = new ItemStack(Material.matchMaterial(paramString1), paramInt, (short) glassInt);
-    	ItemMeta localItemMeta = localItemStack.getItemMeta();
-    	if (paramBoolean) {
-    		localItemMeta.addEnchant(Enchantment.DURABILITY, 1, true);
-    		localItemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
-    	}
-    	localItemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', paramString2));
-    	localItemMeta.setLore(paramArrayList);
-    	localItemStack.setItemMeta(localItemMeta);
-    	return localItemStack;
-    }
 
 	public String getMessage(String string) {
 		return this.messagescfg.getMessagesCgf().getString(string);

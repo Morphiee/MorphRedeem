@@ -1,7 +1,6 @@
 package net.naturva.morphie.mr.util;
 
 import net.naturva.morphie.mr.MorphRedeem;
-import org.bukkit.ChatColor;
 
 import java.io.File;
 import java.util.UUID;

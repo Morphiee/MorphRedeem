@@ -6,11 +6,11 @@ import net.naturva.morphie.mr.MorphRedeem;
 import net.naturva.morphie.mr.files.PlayerFileMethods;
 import net.naturva.morphie.mr.util.Database.MySQLConnection;
 
-public class dataManager {
+public class DataManager {
 	
 	private MorphRedeem plugin;
 	
-	public dataManager(MorphRedeem plugin) {
+	public DataManager(MorphRedeem plugin) {
 		this.plugin = plugin;
 	}
 

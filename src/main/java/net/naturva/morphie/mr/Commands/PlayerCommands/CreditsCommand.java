@@ -3,7 +3,7 @@ package net.naturva.morphie.mr.Commands.PlayerCommands;
 import net.naturva.morphie.mr.MorphRedeem;
 import net.naturva.morphie.mr.util.MessageUtils;
 import net.naturva.morphie.mr.util.Utils;
-import net.naturva.morphie.mr.util.dataManager;
+import net.naturva.morphie.mr.util.DataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -21,7 +21,7 @@ public class CreditsCommand {
         UUID uuid = player.getUniqueId();
         if (args.length == 1) {
             if (player.hasPermission("morphredeem.credits")) {
-                player.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("PlayerCreditsMessage").replace("%CREDITS%", new dataManager(plugin).getData(uuid, "Credits"))));
+                player.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("PlayerCreditsMessage").replace("%CREDITS%", new DataManager(plugin).getData(uuid, "Credits"))));
             } else {
                 player.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("NoPermsMessage")));
             }
@@ -31,12 +31,12 @@ public class CreditsCommand {
                 OfflinePlayer offTarget = null;
                 if (Bukkit.getPlayer(args[1]) != null) {
                     target = Bukkit.getPlayer(args[1]);
-                    String targetCredits = new dataManager(plugin).getData(target.getUniqueId(), "Credits");
+                    String targetCredits = new DataManager(plugin).getData(target.getUniqueId(), "Credits");
                     player.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("OtherPlayerCreditMessage").replace("%PLAYER%", target.getName()).replace("%CREDITS%", targetCredits)));
                 } else {
                     offTarget = (OfflinePlayer)Bukkit.getServer().getOfflinePlayer(args[1]);
                     if (new Utils(plugin).getFileExists(offTarget.getUniqueId())) {
-                        String targetCredits = new dataManager(plugin).getData(offTarget.getUniqueId(), "Credits");
+                        String targetCredits = new DataManager(plugin).getData(offTarget.getUniqueId(), "Credits");
                         player.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("OtherPlayerCreditMessage").replace("%PLAYER%", offTarget.getName()).replace("%CREDITS%", targetCredits)));
                     } else {
                         player.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));

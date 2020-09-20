@@ -5,7 +5,7 @@ import com.gmail.nossr50.api.exceptions.InvalidSkillException;
 import net.md_5.bungee.api.ChatColor;
 import net.naturva.morphie.mr.MorphRedeem;
 import net.naturva.morphie.mr.util.McMMOMethods;
-import net.naturva.morphie.mr.util.dataManager;
+import net.naturva.morphie.mr.util.DataManager;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
@@ -30,7 +30,7 @@ public class SkillNameCommand {
             }
             if (intCheck) {
                 int amount2 = Integer.parseInt(args[1]);
-                int credits = Integer.parseInt(new dataManager(plugin).getData(uuid, "Credits"));
+                int credits = Integer.parseInt(new DataManager(plugin).getData(uuid, "Credits"));
                 try {
                     if (new McMMOMethods().doesSkillExist(player, skill)) {
                         if (amount2 > 0 && amount2 <= credits) {
@@ -49,8 +49,8 @@ public class SkillNameCommand {
                                     }
                                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + message));
                                 } else {
-                                    new dataManager(plugin).updateData(uuid, +amount2, "Credits_Spent", "add");
-                                    new dataManager(plugin).updateData(uuid, -amount2, "Credits", "remove");
+                                    new DataManager(plugin).updateData(uuid, +amount2, "Credits_Spent", "add");
+                                    new DataManager(plugin).updateData(uuid, -amount2, "Credits", "remove");
 
                                     ExperienceAPI.addLevel(player, skill, amount2);
                                     String message = this.plugin.getMessage("CreditAssignmentSuccess");

@@ -3,7 +3,6 @@ package net.naturva.morphie.mr.events.menus;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import net.naturva.morphie.mr.files.Skills;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,8 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import net.naturva.morphie.mr.MorphRedeem;
-import net.naturva.morphie.mr.files.PlayerFileMethods;
-import net.naturva.morphie.mr.util.dataManager;
+import net.naturva.morphie.mr.util.DataManager;
 
 public class RedeemMenuEvent implements Listener {
 
@@ -33,7 +31,7 @@ public class RedeemMenuEvent implements Listener {
 				return;
 			}
 			
-			String credits = new dataManager(plugin).getData(uuid, "Credits");
+			String credits = new DataManager(plugin).getData(uuid, "Credits");
 			ItemStack item = event.getCurrentItem();
 		    ItemMeta itemmeta = item.getItemMeta();
 		    ArrayList<String> itemlore = (ArrayList<String>) itemmeta.getLore();

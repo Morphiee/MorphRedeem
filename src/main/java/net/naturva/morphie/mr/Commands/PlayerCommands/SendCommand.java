@@ -3,7 +3,7 @@ package net.naturva.morphie.mr.Commands.PlayerCommands;
 import net.md_5.bungee.api.ChatColor;
 import net.naturva.morphie.mr.MorphRedeem;
 import net.naturva.morphie.mr.util.Utils;
-import net.naturva.morphie.mr.util.dataManager;
+import net.naturva.morphie.mr.util.DataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -32,7 +32,7 @@ public class SendCommand {
             if (amount <= 0) {
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Send")));
             }
-            int senderCreds = Integer.parseInt(new dataManager(plugin).getData(player.getUniqueId(), "Credits"));
+            int senderCreds = Integer.parseInt(new DataManager(plugin).getData(player.getUniqueId(), "Credits"));
             if (amount > senderCreds) {
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidCredits")));
             }
@@ -46,15 +46,15 @@ public class SendCommand {
                 offTarget = (OfflinePlayer)Bukkit.getServer().getOfflinePlayer(args[1]);
                 targetUUID = offTarget.getUniqueId();
                 if (new Utils(plugin).getFileExists(targetUUID)) {
-                    new dataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
-                    new dataManager(plugin).updateData(player.getUniqueId(), -amount, "Credits", "remove");
+                    new DataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
+                    new DataManager(plugin).updateData(player.getUniqueId(), -amount, "Credits", "remove");
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditSendSuccessMessage").replace("%TARGET%", offTarget.getName()).replace("%CREDITS%", "" + amount)));
                 } else {
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
                 }
             }
-            new dataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
-            new dataManager(plugin).updateData(player.getUniqueId(), -amount, "Credits", "remove");
+            new DataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
+            new DataManager(plugin).updateData(player.getUniqueId(), -amount, "Credits", "remove");
             if (player == target) {
                 target.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditSendMessage").replace("%SENDER%", player.getName()).replace("%CREDITS%", "" + amount)));
             } else {
