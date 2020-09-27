@@ -27,7 +27,7 @@ public class SendCommand {
                 } catch (NumberFormatException e) {
                     intCheck = false;
                 }
-                if (intCheck = true) {
+                if (intCheck) {
                     int amount = Integer.parseInt(args[2]);
                     int senderCreds = Integer.parseInt(new DataManager(plugin).getData(player.getUniqueId(), "Credits"));
                     if (amount > 0) {
