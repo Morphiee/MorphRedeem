@@ -41,10 +41,10 @@ public class SendCommand {
                                 new DataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
                                 new DataManager(plugin).updateData(player.getUniqueId(), -amount, "Credits", "remove");
                                 if (player == target) {
-                                    target.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditSendMessage").replace("%SENDER%", player.getName()).replace("%CREDITS%", "" + amount)));
+                                    target.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditSendMessage").replace("%SENDER%", player.getName()).replace("%CREDITS%", "" + amount)));
                                 } else {
-                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditSendSuccessMessage").replace("%TARGET%", target.getName()).replace("%CREDITS%", "" + amount)));
-                                    target.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditSendMessage").replace("%SENDER%", player.getName()).replace("%CREDITS%", "" + amount)));
+                                    player.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditSendSuccessMessage").replace("%TARGET%", target.getName()).replace("%CREDITS%", "" + amount)));
+                                    target.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditSendMessage").replace("%SENDER%", player.getName()).replace("%CREDITS%", "" + amount)));
                                 }
                             } else if (Bukkit.getPlayer(args[1]) == null) {
                                 offTarget = (OfflinePlayer) Bukkit.getServer().getOfflinePlayer(args[1]);
@@ -52,9 +52,9 @@ public class SendCommand {
                                 if (new Utils(plugin).getFileExists(targetUUID)) {
                                     new DataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
                                     new DataManager(plugin).updateData(player.getUniqueId(), -amount, "Credits", "remove");
-                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditSendSuccessMessage").replace("%TARGET%", offTarget.getName()).replace("%CREDITS%", "" + amount)));
+                                    player.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditSendSuccessMessage").replace("%TARGET%", offTarget.getName()).replace("%CREDITS%", "" + amount)));
                                 } else {
-                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
+                                    player.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
                                 }
                             }
                         } else {
@@ -69,7 +69,7 @@ public class SendCommand {
             } else {
                 player.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Send")));
             }
-        }else {
+        } else {
             player.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("NoPermsMessage")));
         }
     }
