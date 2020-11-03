@@ -19,7 +19,6 @@ import java.util.UUID;
 public class RedeemMenu implements Listener {
 	
 	private MorphRedeem plugin;
-	private Skills skills;
 	  
 	public RedeemMenu(MorphRedeem plugin) {
 		this.plugin = plugin;
@@ -47,7 +46,7 @@ public class RedeemMenu implements Listener {
 	    	}
 		}
 	    
-	    if (skillDisable == true && replaceItem == true && skills.getSkillDisableList("SkillsToDisable.List").contains("Acrobatics")) {
+	    if (skillDisable && replaceItem && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Acrobatics")) {
 	    	Redeem.setItem(10, new MenuUtils().createInventoryItem(this.plugin.getConfig().getString("Settings.ReplaceGUIItem.ItemName"), 1, this.plugin.getMessage("Menu.Acrobatics.Name"), Acrobatics, false));
 	    } else {
 			Redeem.setItem(10, new MenuUtils().createInventoryItem(this.plugin.skillscfg.getSkillItemName("Skills.Acrobatics.GUI.ItemName"), 1, this.plugin.getMessage("Menu.Acrobatics.Name"), Acrobatics, false));
@@ -68,7 +67,7 @@ public class RedeemMenu implements Listener {
 	    	}
 		}
 	
-	    if (skillDisable == true && replaceItem == true && skills.getSkillDisableList("SkillsToDisable.List").contains("Alchemy")) {
+	    if (skillDisable == true && replaceItem == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Alchemy")) {
 	    	Redeem.setItem(11, new MenuUtils().createInventoryItem(this.plugin.getConfig().getString("Settings.ReplaceGUIItem.ItemName"), 1, this.plugin.getMessage("Menu.Alchemy.Name"), Alchemy, false));
 	    } else {
 	    	Redeem.setItem(11, new MenuUtils().createInventoryItem(this.plugin.skillscfg.getSkillItemName("Skills.Alchemy.GUI.ItemName"), 1, this.plugin.getMessage("Menu.Alchemy.Name"), Alchemy, false));
@@ -89,7 +88,7 @@ public class RedeemMenu implements Listener {
 	    	}
 		}
 	    
-	    if (skillDisable == true && replaceItem == true && skills.getSkillDisableList("SkillsToDisable.List").contains("Archery")) {
+	    if (skillDisable == true && replaceItem == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Archery")) {
 	    	Redeem.setItem(12, new MenuUtils().createInventoryItem(this.plugin.getConfig().getString("Settings.ReplaceGUIItem.ItemName"), 1, this.plugin.getMessage("Menu.Archery.Name"), Archery, false));
 	    } else {
 	    	Redeem.setItem(12, new MenuUtils().createInventoryItem(this.plugin.skillscfg.getSkillItemName("Skills.Archery.GUI.ItemName"), 1, this.plugin.getMessage("Menu.Archery.Name"), Archery, false));
@@ -110,7 +109,7 @@ public class RedeemMenu implements Listener {
 	    	}
 		}
 	
-	    if (skillDisable == true && replaceItem == true && skills.getSkillDisableList("SkillsToDisable.List").contains("Axes")) {
+	    if (skillDisable == true && replaceItem == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Axes")) {
 	    	Redeem.setItem(13, new MenuUtils().createInventoryItem(this.plugin.getConfig().getString("Settings.ReplaceGUIItem.ItemName"), 1, this.plugin.getMessage("Menu.Axes.Name"), Axes, false));
 	    } else {
 	    	Redeem.setItem(13, new MenuUtils().createInventoryItem(this.plugin.skillscfg.getSkillItemName("Skills.Axes.GUI.ItemName"), 1, this.plugin.getMessage("Menu.Axes.Name"), Axes, false));
@@ -131,7 +130,7 @@ public class RedeemMenu implements Listener {
 	    	}
 		}
 	
-	    if (skillDisable == true && replaceItem == true && skills.getSkillDisableList("SkillsToDisable.List").contains("Excavation")) {
+	    if (skillDisable == true && replaceItem == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Excavation")) {
 	    	Redeem.setItem(14, new MenuUtils().createInventoryItem(this.plugin.getConfig().getString("Settings.ReplaceGUIItem.ItemName"), 1, this.plugin.getMessage("Menu.Excavation.Name"), Excavation, false));
 	    } else {
 	    	Redeem.setItem(14, new MenuUtils().createInventoryItem(this.plugin.skillscfg.getSkillItemName("Skills.Excavation.GUI.ItemName"), 1, this.plugin.getMessage("Menu.Excavation.Name"), Excavation, false));
@@ -152,7 +151,7 @@ public class RedeemMenu implements Listener {
 	    	}
 		}
 	
-	    if (skillDisable == true && replaceItem == true && skills.getSkillDisableList("SkillsToDisable.List").contains("Fishing")) {
+	    if (skillDisable == true && replaceItem == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Fishing")) {
 	    	Redeem.setItem(20, new MenuUtils().createInventoryItem(this.plugin.getConfig().getString("Settings.ReplaceGUIItem.ItemName"), 1, this.plugin.getMessage("Menu.Fishing.Name"), Fishing, false));
 	    } else {
 	    	Redeem.setItem(20, new MenuUtils().createInventoryItem(this.plugin.skillscfg.getSkillItemName("Skills.Fishing.GUI.ItemName"), 1, this.plugin.getMessage("Menu.Fishing.Name"), Fishing, false));
@@ -173,7 +172,7 @@ public class RedeemMenu implements Listener {
 	    	}
 		}
 	
-	    if (skillDisable == true && replaceItem == true && skills.getSkillDisableList("SkillsToDisable.List").contains("Herbalism")) {
+	    if (skillDisable == true && replaceItem == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Herbalism")) {
 	    	Redeem.setItem(21, new MenuUtils().createInventoryItem(this.plugin.getConfig().getString("Settings.ReplaceGUIItem.ItemName"), 1, this.plugin.getMessage("Menu.Herbalism.Name"), Herbalism, false));
 	    } else {
 	    	Redeem.setItem(21, new MenuUtils().createInventoryItem(this.plugin.skillscfg.getSkillItemName("Skills.Herbalism.GUI.ItemName"), 1, this.plugin.getMessage("Menu.Herbalism.Name"), Herbalism, false));
@@ -194,7 +193,7 @@ public class RedeemMenu implements Listener {
 	    	}
 		}
 	
-	    if (skillDisable == true && replaceItem == true && skills.getSkillDisableList("SkillsToDisable.List").contains("Mining")) {
+	    if (skillDisable == true && replaceItem == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Mining")) {
 	    	Redeem.setItem(22, new MenuUtils().createInventoryItem(this.plugin.getConfig().getString("Settings.ReplaceGUIItem.ItemName"), 1, this.plugin.getMessage("Menu.Mining.Name"), Mining, false));
 	    } else {
 	    	Redeem.setItem(22, new MenuUtils().createInventoryItem(this.plugin.skillscfg.getSkillItemName("Skills.Mining.GUI.ItemName"), 1, this.plugin.getMessage("Menu.Mining.Name"), Mining, false));
@@ -215,7 +214,7 @@ public class RedeemMenu implements Listener {
 	    	}
 		}
 	
-	    if (skillDisable == true && replaceItem == true && skills.getSkillDisableList("SkillsToDisable.List").contains("Repair")) {
+	    if (skillDisable == true && replaceItem == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Repair")) {
 	    	Redeem.setItem(28, new MenuUtils().createInventoryItem(this.plugin.getConfig().getString("Settings.ReplaceGUIItem.ItemName"), 1, this.plugin.getMessage("Menu.Repair.Name"), Repair, false));
 	    } else {
 	    	Redeem.setItem(28, new MenuUtils().createInventoryItem(this.plugin.skillscfg.getSkillItemName("Skills.Repair.GUI.ItemName"), 1, this.plugin.getMessage("Menu.Repair.Name"), Repair, false));
@@ -236,7 +235,7 @@ public class RedeemMenu implements Listener {
 	    	}
 		}
 	
-	    if (skillDisable == true && replaceItem == true && skills.getSkillDisableList("SkillsToDisable.List").contains("Swords")) {
+	    if (skillDisable == true && replaceItem == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Swords")) {
 	    	Redeem.setItem(29, new MenuUtils().createInventoryItem(this.plugin.getConfig().getString("Settings.ReplaceGUIItem.ItemName"), 1, this.plugin.getMessage("Menu.Swords.Name"), Swords, false));
 	    } else {
 	    	Redeem.setItem(29, new MenuUtils().createInventoryItem(this.plugin.skillscfg.getSkillItemName("Skills.Swords.GUI.ItemName"), 1, this.plugin.getMessage("Menu.Swords.Name"), Swords, false));
@@ -257,7 +256,7 @@ public class RedeemMenu implements Listener {
 	    	}
 		}
 	
-	    if (skillDisable == true && replaceItem == true && skills.getSkillDisableList("SkillsToDisable.List").contains("Taming")) {
+	    if (skillDisable == true && replaceItem == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Taming")) {
 	    	Redeem.setItem(30, new MenuUtils().createInventoryItem(this.plugin.getConfig().getString("Settings.ReplaceGUIItem.ItemName"), 1, this.plugin.getMessage("Menu.Taming.Name"), Taming, false));
 	    } else {
 	    	Redeem.setItem(30, new MenuUtils().createInventoryItem(this.plugin.skillscfg.getSkillItemName("Skills.Taming.GUI.ItemName"), 1, this.plugin.getMessage("Menu.Taming.Name"), Taming, false));
@@ -278,7 +277,7 @@ public class RedeemMenu implements Listener {
 	    	}
 		}
 	
-	    if (skillDisable == true && replaceItem == true && skills.getSkillDisableList("SkillsToDisable.List").contains("Unarmed")) {
+	    if (skillDisable == true && replaceItem == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Unarmed")) {
 	    	Redeem.setItem(31, new MenuUtils().createInventoryItem(this.plugin.getConfig().getString("Settings.ReplaceGUIItem.ItemName"), 1, this.plugin.getMessage("Menu.Unarmed.Name"), Unarmed, false));
 	    } else {
 	    	Redeem.setItem(31, new MenuUtils().createInventoryItem(this.plugin.skillscfg.getSkillItemName("Skills.Unarmed.GUI.ItemName"), 1, this.plugin.getMessage("Menu.Unarmed.Name"), Unarmed, false));
@@ -299,7 +298,7 @@ public class RedeemMenu implements Listener {
 	    	}
 		}
 	
-	    if (skillDisable == true && replaceItem == true && skills.getSkillDisableList("SkillsToDisable.List").contains("Woodcutting")) {
+	    if (skillDisable == true && replaceItem == true && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains("Woodcutting")) {
 	    	Redeem.setItem(32, new MenuUtils().createInventoryItem(this.plugin.getConfig().getString("Settings.ReplaceGUIItem.ItemName"), 1, this.plugin.getMessage("Menu.Woodcutting.Name"), Woodcutting, false));
 	    } else {
 	    	Redeem.setItem(32, new MenuUtils().createInventoryItem(this.plugin.skillscfg.getSkillItemName("Skills.Woodcutting.GUI.ItemName"), 1, this.plugin.getMessage("Menu.Woodcutting.Name"), Woodcutting, false));

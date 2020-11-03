@@ -25,31 +25,28 @@ public class CommandHandler implements CommandExecutor {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
                     new MenuCommand(plugin).openMenu(player);
-                    return true;
                 } else {
                     sender.sendMessage(MessageUtils.addColor(plugin.getMessage("ErrorPrefix") + " &cThis command can only be run by a player!"));
-                    return true;
                 }
+                return true;
             } else if (args[0].equalsIgnoreCase("help")) {
                 // Player Only
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
                     new HelpCommand(plugin).runHelp(player);
-                    return true;
                 } else {
                     sender.sendMessage(MessageUtils.addColor(plugin.getMessage("ErrorPrefix") + " &cThis command can only be run by a player!"));
-                    return true;
                 }
+                return true;
             } else if (args[0].equalsIgnoreCase("credits")) {
                 // Player Only
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
                     new CreditsCommand(plugin).runCredits(player, args);
-                    return true;
                 } else {
                     sender.sendMessage(MessageUtils.addColor(plugin.getMessage("ErrorPrefix") + " &cThis command can only be run by a player!"));
-                    return true;
                 }
+                return true;
             } else if (args[0].equalsIgnoreCase("add")) {
                 // Sender (Including Console)
                 new AddCommand(plugin).addCredits(sender, args);
@@ -67,11 +64,10 @@ public class CommandHandler implements CommandExecutor {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
                     new SendCommand(plugin).sendCredits(player, args);
-                    return true;
                 } else {
                     sender.sendMessage(MessageUtils.addColor(plugin.getMessage("ErrorPrefix") + " &cThis command can only be run by a player!"));
-                    return true;
                 }
+                return true;
             } else if (args[0].equalsIgnoreCase("reset")) {
                 // Sender (Including Console)
                 new ResetCommand(plugin).resetCredits(sender, args);
@@ -85,11 +81,10 @@ public class CommandHandler implements CommandExecutor {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
                     new SkillNameCommand(plugin).redeemCredits(player, args);
-                    return true;
                 } else {
                     sender.sendMessage(MessageUtils.addColor(plugin.getMessage("ErrorPrefix") + " &cThis command can only be run by a player!"));
-                    return true;
                 }
+                return true;
             } else {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidArgsMessage")));
                 return true;

@@ -1,5 +1,6 @@
 package net.naturva.morphie.mr.files;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
 import net.naturva.morphie.mr.MorphRedeem;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -78,18 +79,19 @@ public class Skills implements Listener {
     }
 
     public String getSkillItemName(String string) {
-        return skillsCFG.getString(string);
+        return this.skillsCFG.getString(string);
     }
 
     public Integer getSkillLevelTillUse(String string) {
-        return skillsCFG.getInt(string);
+        return this.skillsCFG.getInt(string);
     }
 
     public List<String> getSkillDisableList(String string) {
-        return skillsCFG.getStringList(string);
+        return this.skillsCFG.getStringList(string);
     }
 
     public boolean getSkillDisableBoolean(String string) {
-        return skillsCFG.getBoolean(string);
+        return this.skillsCFG.getBoolean(string);
     }
+
 }

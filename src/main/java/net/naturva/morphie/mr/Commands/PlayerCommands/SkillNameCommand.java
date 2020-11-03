@@ -6,6 +6,7 @@ import net.md_5.bungee.api.ChatColor;
 import net.naturva.morphie.mr.MorphRedeem;
 import net.naturva.morphie.mr.util.McMMOMethods;
 import net.naturva.morphie.mr.util.DataManager;
+import net.naturva.morphie.mr.util.MessageUtils;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
@@ -31,36 +32,41 @@ public class SkillNameCommand {
             if (intCheck) {
                 int amount2 = Integer.parseInt(args[1]);
                 int credits = Integer.parseInt(new DataManager(plugin).getData(uuid, "Credits"));
+                boolean skillDisable = this.plugin.skillscfg.getSkillDisableBoolean("SkillsToDisable.Enabled");
                 try {
                     if (new McMMOMethods().doesSkillExist(player, skill)) {
                         if (amount2 > 0 && amount2 <= credits) {
                             int cap = ExperienceAPI.getLevelCap(skill);
                             if (this.plugin.skillscfg.getSkillLevelTillUse("Skills." + skill + ".LevelTillUse") <= ExperienceAPI.getLevel(player, skill)) {
-                                if (ExperienceAPI.getLevel(player, skill) + amount2 > cap) {
-                                    String message = this.plugin.getMessage("SkillCapReached");
-                                    if (message.contains("%SKILL%")) {
-                                        message = message.replaceAll("%SKILL%", skill);
-                                    }
-                                    if (message.contains("%CAP%")) {
-                                        message = message.replaceAll("%CAP%", "" + cap);
-                                    }
-                                    if (message.contains("%LEVEL%")) {
-                                        message = message.replaceAll("%LEVEL%", "" + (ExperienceAPI.getLevel(player, skill) + amount2));
-                                    }
-                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + message));
+                                if (skillDisable && this.plugin.skillscfg.getSkillDisableList("SkillsToDisable.List").contains(skill)) {
+                                    player.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("SkillDisabledMessage")));
                                 } else {
-                                    new DataManager(plugin).updateData(uuid, +amount2, "Credits_Spent", "add");
-                                    new DataManager(plugin).updateData(uuid, -amount2, "Credits", "remove");
+                                    if (ExperienceAPI.getLevel(player, skill) + amount2 > cap) {
+                                        String message = this.plugin.getMessage("SkillCapReached");
+                                        if (message.contains("%SKILL%")) {
+                                            message = message.replaceAll("%SKILL%", skill);
+                                        }
+                                        if (message.contains("%CAP%")) {
+                                            message = message.replaceAll("%CAP%", "" + cap);
+                                        }
+                                        if (message.contains("%LEVEL%")) {
+                                            message = message.replaceAll("%LEVEL%", "" + (ExperienceAPI.getLevel(player, skill) + amount2));
+                                        }
+                                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + message));
+                                    } else {
+                                        new DataManager(plugin).updateData(uuid, +amount2, "Credits_Spent", "add");
+                                        new DataManager(plugin).updateData(uuid, -amount2, "Credits", "remove");
 
-                                    ExperienceAPI.addLevel(player, skill, amount2);
-                                    String message = this.plugin.getMessage("CreditAssignmentSuccess");
-                                    if (message.contains("%SKILL%")) {
-                                        message = message.replaceAll("%SKILL%", skill);
+                                        ExperienceAPI.addLevel(player, skill, amount2);
+                                        String message = this.plugin.getMessage("CreditAssignmentSuccess");
+                                        if (message.contains("%SKILL%")) {
+                                            message = message.replaceAll("%SKILL%", skill);
+                                        }
+                                        if (message.contains("%CREDITS%")) {
+                                            message = message.replaceAll("%CREDITS%", "" + amount2);
+                                        }
+                                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + message));
                                     }
-                                    if (message.contains("%CREDITS%")) {
-                                        message = message.replaceAll("%CREDITS%", "" + amount2);
-                                    }
-                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + message));
                                 }
                             } else {
                                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("LevelTillUse").replace("%LEVEL%", "" + this.plugin.skillscfg.getSkillLevelTillUse("Skills." + skill + ".LevelTillUse"))));
