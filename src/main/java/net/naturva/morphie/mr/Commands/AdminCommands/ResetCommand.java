@@ -34,7 +34,16 @@ public class ResetCommand {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditResetSuccessMessage")));
                         target.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditResetMessage")));
                     }
-                } else if (new Utils(plugin).checkIfUUID(args[1]) == true) {
+                } else if (!new Utils(plugin).checkIfUUID(args[1]) && Bukkit.getPlayer(args[1]) == null) {
+                        offTarget = (OfflinePlayer)Bukkit.getServer().getOfflinePlayer(args[1]);
+                        targetUUID = offTarget.getUniqueId();
+                        if (new Utils(plugin).getFileExists(targetUUID)) {
+                            new DataManager(plugin).updateData(targetUUID, 0, "Credits", "set");
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditResetSuccessMessage")));
+                        } else {
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
+                        }
+                } else if (new Utils(plugin).checkIfUUID(args[1])) {
                     targetUUID = UUID.fromString(args[1]);
                     target = Bukkit.getPlayer(targetUUID);
                     if (new Utils(plugin).getFileExists(targetUUID)) {
@@ -43,15 +52,8 @@ public class ResetCommand {
                     } else {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
                     }
-                } else if (new Utils(plugin).checkIfUUID(args[1]) == false && Bukkit.getPlayer(args[1]) == null) {
-                    offTarget = (OfflinePlayer)Bukkit.getServer().getOfflinePlayer(args[1]);
-                    targetUUID = offTarget.getUniqueId();
-                    if (new Utils(plugin).getFileExists(targetUUID)) {
-                        new DataManager(plugin).updateData(targetUUID, 0, "Credits", "set");
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditResetSuccessMessage")));
-                    } else {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
-                    }
+                } else {
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
                 }
             } else {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Reset")));

@@ -37,15 +37,12 @@ public class AddCommand {
                         if (Bukkit.getPlayer(args[1]) != null) {
                             target = Bukkit.getPlayer(args[1]);
                             targetUUID = target.getUniqueId();
-                        } else if (new Utils(plugin).checkIfUUID(args[1])) {
-                            targetUUID = UUID.fromString(args[1]);
-                            target = Bukkit.getPlayer(targetUUID);
-                            if (new Utils(plugin).getFileExists(targetUUID)) {
-                                new DataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddSuccessMessage")));
+                            new DataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
+                            if (sender == target) {
                                 target.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddMessage").replace("%CREDITS%", "" + amount)));
                             } else {
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddSuccessMessage")));
+                                target.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddMessage").replace("%CREDITS%", "" + amount)));
                             }
                         } else if (!new Utils(plugin).checkIfUUID(args[1]) && Bukkit.getPlayer(args[1]) == null) {
                             offTarget = Bukkit.getServer().getOfflinePlayer(args[1]);
@@ -56,13 +53,18 @@ public class AddCommand {
                             } else {
                                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
                             }
-                        }
-                        new DataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
-                        if (sender == target) {
-                            target.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddMessage").replace("%CREDITS%", "" + amount)));
+                        } else if (new Utils(plugin).checkIfUUID(args[1])) {
+                            targetUUID = UUID.fromString(args[1]);
+                            target = Bukkit.getPlayer(targetUUID);
+                            if (new Utils(plugin).getFileExists(targetUUID)) {
+                                new DataManager(plugin).updateData(targetUUID, +amount, "Credits", "add");
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddSuccessMessage")));
+                                target.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddMessage").replace("%CREDITS%", "" + amount)));
+                            } else {
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
+                            }
                         } else {
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddSuccessMessage")));
-                            target.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditAddMessage").replace("%CREDITS%", "" + amount)));
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
                         }
                     } else {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Add")));

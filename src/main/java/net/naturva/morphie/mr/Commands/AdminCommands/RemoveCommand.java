@@ -39,45 +39,47 @@ public class RemoveCommand {
                             target = Bukkit.getPlayer(args[1]);
                             targetUUID = target.getUniqueId();
                             credits = Integer.parseInt(new DataManager(plugin).getData(targetUUID, "Credits"));
-                            if (amount > credits) {
+                            if (amount <= credits) {
+                                new DataManager(plugin).updateData(targetUUID, -amount, "Credits", "remove");
+                                if (sender == target) {
+                                    target.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditRemoveMessage").replace("%CREDITS%", "" + amount)));
+                                } else {
+                                    sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditRemoveSuccessMessage")));
+                                    target.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditRemoveMessage").replace("%CREDITS%", "" + amount)));
+                                }
+                            } else {
+                                sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Remove")));
+                            }
+                        } else if (!new Utils(plugin).checkIfUUID(args[1]) && Bukkit.getPlayer(args[1]) == null) {
+                            offTarget = (OfflinePlayer)Bukkit.getServer().getOfflinePlayer(args[1]);
+                            targetUUID = offTarget.getUniqueId();
+                            credits = Integer.parseInt(new DataManager(plugin).getData(targetUUID, "Credits"));
+                            if (amount <= credits) {
+                                if (new Utils(plugin).getFileExists(targetUUID)) {
+                                    new DataManager(plugin).updateData(targetUUID, -amount, "Credits", "remove");
+                                    sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditRemoveSuccessMessage")));
+                                } else {
+                                    sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
+                                }
+                            } else {
                                 sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Remove")));
                             }
                         } else if (new Utils(plugin).checkIfUUID(args[1])) {
                             targetUUID = UUID.fromString(args[1]);
                             target = Bukkit.getPlayer(targetUUID);
                             credits = Integer.parseInt(new DataManager(plugin).getData(targetUUID, "Credits"));
-                            if (amount > credits) {
+                            if (amount <= credits) {
+                                if (new Utils(plugin).getFileExists(targetUUID)) {
+                                    new DataManager(plugin).updateData(targetUUID, -amount, "Credits", "remove");
+                                    sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditRemoveSuccessMessage")));
+                                } else {
+                                    sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
+                                }
+                            } else {
                                 sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Remove")));
                             }
-                            if (new Utils(plugin).getFileExists(targetUUID)) {
-                                new DataManager(plugin).updateData(targetUUID, -amount, "Credits", "remove");
-                                sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditRemoveSuccessMessage")));
-                            } else {
-                                sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
-                            }
-                        } else if (new Utils(plugin).checkIfUUID(args[1]) == false && Bukkit.getPlayer(args[1]) == null) {
-                            offTarget = (OfflinePlayer)Bukkit.getServer().getOfflinePlayer(args[1]);
-                            targetUUID = offTarget.getUniqueId();
-                            credits = Integer.parseInt(new DataManager(plugin).getData(targetUUID, "Credits"));
-                            if (amount > credits) {
-                                sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Remove")));
-                            }
-                            if (new Utils(plugin).getFileExists(targetUUID)) {
-                                new DataManager(plugin).updateData(targetUUID, -amount, "Credits", "remove");
-                                sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditRemoveSuccessMessage")));
-                            } else {
-                                sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
-                            }
-                        }
-                        if (amount > credits) {
-                            sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Remove")));
-                        }
-                        new DataManager(plugin).updateData(targetUUID, -amount, "Credits", "remove");
-                        if (sender == target) {
-                            target.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditRemoveMessage").replace("%CREDITS%", "" + amount)));
                         } else {
-                            sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditRemoveSuccessMessage")));
-                            target.sendMessage(MessageUtils.addColor(this.plugin.getMessage("Prefix") + this.plugin.getMessage("CreditRemoveMessage").replace("%CREDITS%", "" + amount)));
+                            sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("InvalidPlayer")));
                         }
                     } else {
                         sender.sendMessage(MessageUtils.addColor(this.plugin.getMessage("ErrorPrefix") + this.plugin.getMessage("CorrectUsage.Remove")));
