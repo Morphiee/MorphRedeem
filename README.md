@@ -22,7 +22,6 @@ A Minecraft plugin that allows players to redeem credits into mcMMO levels! (Ski
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 
 ## Contact Information:
-
 > Morphie's Discord Server: `https://discordapp.com/invite/6bnU9xn`
 > Morphie's Discord Name: `Morphie#6969`
 > 

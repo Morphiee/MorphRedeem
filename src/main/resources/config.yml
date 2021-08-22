@@ -36,6 +36,11 @@ Settings:
       ItemName: EMERALD
     PluginCredits:
       ItemName: PAPER
+  # If set to true, each skill will have a required level before the user can apply credits to it. You can edit this in
+  # the skills.yml
+  LevelTillUse: false
+  # If set to true, the prestige system will be enabled. Individual skills can be disabled BUT this is for the entire system.
+  PrestigeSystem: false
 
 #============================================================================================================================|
 
@@ -61,46 +66,59 @@ MySQL:
 # Below I will explain how each option works for the prestige system.
 # LevelCap: - DEFAULT (Level cap set in mcMMO), or you can set it to a level below the configured mcMMO cap.
 # LevelReset: - Level that the skill will be reset too.
-# PrestigeCap: - How many times can a user prestige a skill.
+# PrestigeCap: - How many times can a user prestige a skill. (Set to -1 to have no cap)
 Prestige:
   LevelCap: DEFAULT
   Acrobatics:
+    Enabled: true
     LevelReset: 0
     PrestigeCap: 10
   Alchemy:
+    Enabled: true
     LevelReset: 0
     PrestigeCap: 10
   Archery:
+    Enabled: true
     LevelReset: 0
     PrestigeCap: 10
   Axes:
+    Enabled: true
     LevelReset: 0
     PrestigeCap: 10
   Excavation:
+    Enabled: true
     LevelReset: 0
     PrestigeCap: 10
   Fishing:
+    Enabled: true
     LevelReset: 0
     PrestigeCap: 10
   Herbalism:
+    Enabled: true
     LevelReset: 0
     PrestigeCap: 10
   Mining:
+    Enabled: true
     LevelReset: 0
     PrestigeCap: 10
   Repair:
+    Enabled: true
     LevelReset: 0
     PrestigeCap: 10
   Swords:
+    Enabled: true
     LevelReset: 0
     PrestigeCap: 10
   Taming:
+    Enabled: true
     LevelReset: 0
     PrestigeCap: 10
   Unarmed:
+    Enabled: true
     LevelReset: 0
     PrestigeCap: 10
   Woodcutting:
+    Enabled: true
     LevelReset: 0
     PrestigeCap: 10
 
